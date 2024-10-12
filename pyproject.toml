@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "sigprofsim-wrapper"
+version = "0.1.0"
+description = ""
+authors = ["Nazif T. <nazifts@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+sigprofilersimulator = "^1.1.6"
+sigprofilermatrixgenerator = "^1.2.30"
+setuptools = "^75.1.0"
+paramiko = "^3.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
