@@ -51,8 +51,8 @@ def main():
 
         print(f"Successfully pushed .vcf files from {folder_path} to {REMOTE_HOST}:{remote_path}")
 
-        # Change to home directory
-        cmd("cd")
+        # Change to commands directory
+        cmd("cd ~/commands")
 
         # Generate jobs
         cmd(f"./generate_synth_jobs_and_commands.sh {folder_name}")

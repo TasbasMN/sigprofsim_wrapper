@@ -7,27 +7,6 @@ import re
 import pandas as pd
 import glob
 
-def backup_and_remove_non_vcf(project_folder):
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    backup_folder = f"backups/{os.path.basename(project_folder)}_backup_{timestamp}"
-    
-    os.makedirs(backup_folder, exist_ok=True)
-    
-    for item in os.listdir(project_folder):
-        source = os.path.join(project_folder, item)
-        destination = os.path.join(backup_folder, item)
-        
-        if os.path.isfile(source):
-            if not source.endswith('.vcf'):
-                shutil.copy2(source, destination)
-                os.remove(source)
-                print(f"Backed up and removed file: {item}")
-        elif os.path.isdir(source):
-            shutil.copytree(source, destination)
-            shutil.rmtree(source)
-            print(f"Backed up and removed directory: {item}")
-    
-    print(f"Backup completed and non-VCF items removed. Backup folder: {backup_folder}")
 
 def vcf_to_bed(vcf_file, bed_file, cushion=1):
     with open(vcf_file, 'r') as vcf, open(bed_file, 'w') as bed:
@@ -67,10 +46,6 @@ def main():
         print(f"Project folder {args.project_folder} does not exist, creating")
         os.makedirs(args.project_folder)
     
-
-    # Backup non-VCF files and remove them from the project folder
-    backup_and_remove_non_vcf(args.project_folder)
-
 
     # Find the first VCF file for gender determination
     vcf_file = next((os.path.join(args.project_folder, f) for f in os.listdir(args.project_folder) if f.endswith('.vcf')), None)
