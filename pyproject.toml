@@ -13,6 +13,9 @@ setuptools = "^75.1.0"
 paramiko = "^3.5.0"
 
 
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
